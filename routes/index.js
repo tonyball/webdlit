@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.serndFile('/src/html/index.html');
+    res.sendFile('/src/html/index.html');
 });
 
 //image decoding funciton
@@ -24,7 +24,7 @@ function decodeBase64Image(dataString) {
 
 router.post('/saveImage',function(req, res){
   var imageBuffer = decodeBase64Image(req.body.file['$ngfDataUrl']);
-  fs.writeFile('/Users/iTOUCH/newkru-dlit/app/images/classroom/'+req.body.name, imageBuffer.data , 'utf-8', function (err) {
+  fs.writeFile('/src/app/images/classroom/'+req.body.name, imageBuffer.data , 'utf-8', function (err) {
     if (err) 
       throw err;
     res.end();
