@@ -16,3 +16,4 @@ RUN cd /src; bower install && grunt serve
 
 EXPOSE  80
 CMD ["node", "/src/app.js"]
+  
