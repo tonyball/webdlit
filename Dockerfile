@@ -13,7 +13,7 @@ RUN cd /src; npm install
 # Bundle app source
 COPY . /src
 
-RUN npm update && bower update
+RUN npm update && bower update --allow-root
 
 RUN cd /src; bower install --allow-root
 
