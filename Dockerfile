@@ -13,7 +13,7 @@ RUN cd /src; npm install
 # Bundle app source
 COPY . /src
 
-RUN cd /src; bower install && grunt serve
+RUN cd /src; bower install --allow-root
 
 EXPOSE  80
 CMD ["node", "/src/app.js"]
