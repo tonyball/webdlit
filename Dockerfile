@@ -13,6 +13,8 @@ RUN cd /src; npm install
 # Bundle app source
 COPY . /src
 
+RUN npm update && bower update
+
 RUN cd /src; bower install --allow-root
 
 EXPOSE  80
