@@ -1,0 +1,51 @@
+
+<div id="new-course" class="col s12 m8 offset-m2 l6 offset-l3 animated slideInDown">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title black-text">เพิ่มหลักสูตร</div>
+      <form name="createForm">
+        <div class="row">
+          <div class="input-field">
+            <input id="course-title" ng-model="course_title" type="text" required="required"/>
+            <label for="course-title" style="left: 0 !important">ชื่อหลักสูตร</label>
+          </div>
+          <div class="input-field">
+            <input id="course-teachername" ng-model="course_teacher_name" type="text" required="required"/>
+            <label for="course-teachername" style="left: 0 !important">ชื่อครูผู้สอน</label>
+          </div>
+        </div>
+        <div class="row">
+          <center><a href="" ng-click="course_image = null" ng-show="course_image" class="fa fa-close fa-2x red-text right"></a><img ng-show="createForm.file.$valid" ngf-thumbnail="course_image" class="thumb"/></center>
+          <div class="file-field input-field">
+            <div class="btn btn-small waves-effect waves-light orange"><span>เลือกรูป</span>
+              <input id="course-image" ngf-select="ngf-select" ng-model="course_image" name="file" type="file" accept="image/*" required="required"/>
+            </div>
+            <div class="file-path-wrapper">
+              <input type="text" placeholder="รูปภาพประจำห้องเรียน" ng-model="course_image.name" disabled="disabled" class="file-path validate"/>
+            </div>
+          </div>
+        </div>
+        <classroom-new-topic-form></classroom-new-topic-form>
+        <classroom-new-section-form></classroom-new-section-form>
+        <div class="row">
+          <div class="input-field">
+            <select ng-model="course_subject" required="required" class="browser-default">
+              <option disabled="disabled" selected="selected" value="">เลือกวิชา</option>
+              <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+              <option value="ฟิสิกส์">ฟิสิกส์</option>
+              <option value="เคมี">เคมี</option>
+              <option value="ชีววิทยา">ชีววิทยา</option>
+              <option value="ไม่ระบุ">ไม่ระบุ</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-action">
+          <center>
+            <button type="submit" ng-disabled="!createForm.$valid" ng-click="addCourse(course_image)" class="btn waves-effect waves-light green">เพิ่มหลักสูตร</button>
+            <button ng-click="hideCreateCourse()" class="btn waves-effect waves-light red">ยกเลิก</button>
+          </center>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

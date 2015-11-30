@@ -1,0 +1,56 @@
+
+<h3 class="grey-text text-accent-2 center">รายละเอียดผลการสอบ เรื่อง {{score.test_name}}</h3>
+<div class="row">
+  <div class="card col s12 m10 offset-m1 animated fadeIn">
+    <div class="card-content"><span class="card-title black-text">ผลการสอบเรื่อง {{score.test_name }} ({{score.course_code}}) เมื่อ {{score.submit_date | date:'medium'}}</span><span class="right card-title orange-text">{{score.score}} คะแนน</span><br/><b>สถานะ:</b><span ng-show="score.status == 'submitted'"> ส่งแล้ว (รอผลการตรวจ)</span><span ng-show="score.status == 'graded'"> ตรวจแล้ว (รอคำตอบ)</span><span ng-show="score.status == 'commented'"> สมบูรณ์แล้ว</span><br/>
+      <div class="divider"></div><br/><b>ชื่อนักเรียน: </b>{{user.title+' '+user.firstname+' '+user.lastname}}<br/><b>ผลคะแนน: </b>{{score.score}} <b>จาก </b>{{score.full_score}} <b>คะแนน</b><br/><b>คิดเป็น </b>{{score.score_percentage | number:2 }} <b>%</b>
+      <div class="row"></div>
+      <div class="divider"></div><br/><b>ความคิดเห็นของครูประจำห้องเรียน</b>
+      <div ng-hide="isStudent">
+        <textarea ckeditor="editorOptions" ng-model="score.teacher_comment" class="materialize-textarea"></textarea>
+      </div>
+      <div ng-hide="isTeacher">
+        <div class="card">
+          <div class="card-content"><span ng-bind-html="score.teacher_comment"></span></div>
+        </div>
+      </div>
+      <div class="row"></div><a href="" ng-show="isTeacher" ng-click="updateToCommented()" class="btn green right">เพิ่มคำแนะนำและยืนยันคะแนน</a>
+      <div class="row"></div><br ng-init="showPdf = false"/>
+      <center ng-show="score.status == 'commented' || isTeacher">
+        <object id="pdf-item" width="100%" height="550" data="" type="application/pdf" ng-show="showPdf"></object>
+        <button ng-click="showPdf = true" ng-show="!showPdf" class="btn orange">แสดงคำอธิบายเฉลย</button>
+        <button ng-click="showPdf = false" ng-show="showPdf" class="btn blue">ซ่อนเฉลย</button>
+      </center><br/><b>รายละเอียดเพิ่มเติม</b><br/><b>สัญลักษณ์</b>
+      <div class="fa fa-times red-text fa-lg"></div> ผิด
+      <div class="fa fa-check green-text fa-lg"></div> ถูก
+      <table style="border: 1px solid grey" class="highlight hoverable centered bordered">
+        <thead class="orange lighten-4">
+          <th>ข้อ</th>
+          <th>คำตอบ</th>
+          <th ng-show="score.status == 'graded' || score.status == 'commented' || isTeacher">ผลการตรวจ</th>
+          <th ng-show="score.status == 'commented' || isTeacher">ข้อที่ถูกต้อง</th>
+          <th ng-show="score.status == 'commented' || isTeacher">ความคิดเห็นคุณครูผู้สอน</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="ans in score.submit_answer track by $index">
+            <td ng-if="$index != 0">{{$index}}</td>
+            <td ng-if="$index != 0">{{ans}}</td>
+            <td ng-if="$index != 0" ng-show="score.status == 'graded' || score.status == 'commented' || isTeacher">
+              <div ng-class="{'fa fa-check green-text fa-lg': score.correct_answer[$index-1] == ans, 'fa fa-times red-text fa-lg': score.correct_answer[$index-1] != ans}"></div>
+            </td>
+            <td ng-if="$index != 0" ng-show="score.status == 'commented' || isTeacher">{{score.correct_answer[$index-1]}}</td>
+            <td ng-if="$index != 0" ng-show="score.status == 'commented' || isTeacher">
+              <div class="input-field col s12">
+                <input type="text" ng-disabled="isStudent" ng-model="score.comment_by_problem[$index-1]"/>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row"></div>
+      <center>
+        <button ng-click="addCommentByProblem()" ng-show="isTeacher" class="btn blue waves-effect waves-light">เพิ่มความเห็นรายข้อ</button>
+      </center>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+
+<div style="display:none" class="practice-container content-container"><img id="practice-item-img" src="" width="100%" class="col"/>
+  <object id="practice-item-pdf" data="" width="100%" height="550" type="application/pdf" class="col"></object>
+  <div class="answer-container animated fadeIn col"><a href="" ng-click="hideAns()" class="fa fa-close fa-2x right red-text"></a><br/>
+    <div ng-repeat="q in questions.text" id="question-{{q.id}}" class="input-field questions"><b>คำสั่ง {{q.remark}}</b><br/><a href="" ng-click="showGuide()" class="fa fa-help">คู่มือการพิมพ์คำตอบ</a>
+      <div ng-repeat="ans in q.answer_box"><b>ข้อที่ {{ans}}.</b>
+        <lable for="question-{{q.id}}-{{ans}}" id="label-question-{{q.id}}-{{ans}}"></lable>
+        <div id="question-{{q.id}}-{{ans}}-rendered" class="ioArea">``</div>
+        <input type="text" id="question-{{q.id}}-{{ans}}" ng-model="check_answers[ans]" ng-focus="showPanel($event)" ng-change="toRender()" class="ioArea"/>
+      </div>
+    </div>
+    <div ng-repeat="q in questions.multitext" id="question-{{q.id}}" class="input-field questions"><b>คำสั่ง {{q.remark}}</b><a href="" ng-click="showGuide()" class="fa fa-help">คู่มือการพิมพ์คำตอบ</a><br/>
+      <div ng-repeat="ans in q.answer_box"><b>ข้อที่ {{ans}}.</b>
+        <lable for="question-{{q.id}}-{{ans}}" id="label-question-{{q.id}}-{{ans}}"></lable>
+        <div ng-repeat="ext in q.extended_remark">
+          <lable for="question-{{q.id}}-{{ans}}-{{$index}}" id="label-question-{{q.id}}-{{ans}}-{{$index}}"></lable>
+          <div id="question-{{q.id}}-{{ans}}-{{$index}}-rendered" class="ioArea">``</div>
+          <input placeholder="{{ext}}" type="text" id="question-{{q.id}}-{{ans}}-{{$index}}" ng-model="check_answers[ans][$index]" ng-focus="showPanel($event)" ng-change="toRender()" class="ioArea"/>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="q in questions.tfq" id="question-{{q.id}}" class="input-field questions"><b>คำสั่ง {{q.remark}}</b>
+      <div ng-repeat="ans in q.answer_box" ng-init="extended={}"><b>ข้อที่ {{ans}}.</b><b id="label-question-{{q.id}}-{{ans}}"></b><br/>
+        <form>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}-{{q.caption[0]}}" value="{{q.caption[0]}}" ng-model="check_answers[ans]"/>
+          <label for="question-{{q.id}}-{{ans}}-{{q.caption[0]}}" id="label-question-{{q.id}}-{{ans}}-{{q.caption[0]}}" class="answer">{{q.caption[0]}}</label>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}-{{q.caption[1]}}" value="{{q.caption[1]}}" ng-model="check_answers[ans]"/>
+          <label for="question-{{q.id}}-{{ans}}-{{q.caption[1]}}" id="label-question-{{q.id}}-{{ans}}-{{q.caption[1]}}" class="answer">{{q.caption[1]}}</label>
+        </form>
+        <div class="row"></div>
+      </div>
+    </div>
+    <div ng-repeat="q in questions.tfqx" id="question-{{q.id}}" class="input-field questions"><b>คำสั่ง {{q.remark}}</b>
+      <div ng-repeat="ans in q.answer_box" ng-init="extended={}"><b>ข้อที่ {{ans}}.</b>
+        <div ng-repeat="ext in q.extended_remark">
+          <lable for="question-{{q.id}}-{{ans}}" id="label-question-{{q.id}}-{{ans}}"></lable>
+          <input placeholder="{{ext}}" type="text" id="question-{{q.id}}-{{ans}}" ng-model="extended.answer" ng-focus="showPanel($event)"/>
+        </div>
+        <form>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}-{{q.caption[0]}}" ng-value="extended.answer+' '+q.caption[0]" ng-model="check_answers[ans]"/>
+          <label for="question-{{q.id}}-{{ans}}-{{q.caption[0]}}" id="label-question-{{q.id}}-{{ans}}-{{q.caption[0]}}" class="answer">{{q.caption[0]}}</label>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}-{{q.caption[1]}}" ng-value="extended.answer+' '+q.caption[1]" ng-model="check_answers[ans]"/>
+          <label for="question-{{q.id}}-{{ans}}-{{q.caption[1]}}" id="label-question-{{q.id}}-{{ans}}-{{q.caption[1]}}" class="answer">{{q.caption[1]}}</label>
+        </form>
+        <div class="row"></div>
+      </div>
+    </div>
+    <div ng-repeat="q in questions.multiple" id="question-{{q.id}}" class="input-field questions"><b>คำสั่ง {{q.remark}}</b>
+      <div ng-repeat="ans in q.answer_box"><b>ข้อที่ {{ans}}.</b><b id="label-question-{{q.id}}-{{ans}}"></b><br/>
+        <form>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}1" value="{{q.caption[0]}}" ng-model="check_answers[ans]" class="multiple"/>
+          <label for="question-{{q.id}}-{{ans}}1" class="answer multiple">{{q.caption[0]}}</label>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}2" value="{{q.caption[1]}}" ng-model="check_answers[ans]" class="multiple"/>
+          <label for="question-{{q.id}}-{{ans}}2" class="answer multiple"> {{q.caption[1]}}</label>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}3" value="{{q.caption[2]}}" ng-model="check_answers[ans]" class="multiple"/>
+          <label for="question-{{q.id}}-{{ans}}3" class="answer multiple"> {{q.caption[2]}}</label>
+          <input name="no{{ans}}" type="radio" id="question-{{q.id}}-{{ans}}4" value="{{q.caption[3]}}" ng-model="check_answers[ans]" class="multiple"/>
+          <label for="question-{{q.id}}-{{ans}}4" class="answer multiple"> {{q.caption[3]}}</label>
+        </form>
+        <div class="row"></div>
+        <div class="divider"></div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+
+<h3 class="grey-text text-accent-2 center">กระดานหลัก</h3>
+<div class="row"></div>
+<center ng-show="user_classrooms.length == 0">
+  <h6 class="black-text">ไม่มีห้องเรียน</h6>
+  <div class="row"></div><a data-target="search-modal" data-position="top" data-delay="50" data-tooltip="ค้นหาห้องเรียน" ng-click="showSearch()" ng-show="isStudent" class="modal-trigger btn orange darken-2 waves-effect waves-light tooltipped">เพิ่มห้องเรียน<i class="fa fa-lg fa-graduation-cap left"></i></a>
+</center>
+<dashboard-classroom-list></dashboard-classroom-list>
+<dashboard-new-classroom-form></dashboard-new-classroom-form>
+<dashboard-edit-classroom-form></dashboard-edit-classroom-form>
+<dashboard-studentlist-modal></dashboard-studentlist-modal>
+<dashboard-search-modal></dashboard-search-modal>
+<div style="bottom: 55px; right: 55px;" ng-show="isTeacher" class="fixed-action-btn animated fadeInDown"><a data-position="top" data-delay="50" data-tooltip="สร้างห้องเรียน" ng-click="showCreateClassroom()" class="btn-floating btn-large orange darken-2 waves-effect waves-light btn tooltipped"><i class="fa fa-lg fa-plus"></i></a></div>
+<div style="bottom: 55px; right: 55px;" ng-show="isStudent &amp;&amp; user_classrooms.length &gt; 0" class="fixed-action-btn animated fadeInDown"><a data-target="search-modal" data-position="top" data-delay="50" data-tooltip="ค้นหาห้องเรียน" ng-click="showSearch()" class="modal-trigger btn-floating btn-large orange darken-2 waves-effect waves-light btn tooltipped"><i class="fa fa-lg fa-graduation-cap right"></i></a></div>

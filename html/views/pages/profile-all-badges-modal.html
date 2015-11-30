@@ -1,0 +1,12 @@
+
+<div id="all-badges-modal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>เหรียญทั้งหมด | @{{user.username}}</h4>
+    <ul class="collection">
+      <li ng-repeat="badge in user.badge_details" class="collection-item avatar"><img ng-src="images/badges/{{badge.group}}/{{badge.image}}" class="circle"/><span class="title"><b>{{badge.name}}</b></span>
+        <p class="grey-text"><em>{{badge.description}}</em></p>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer"><a href="" class="modal-action modal-close btn red waves-effect waves-light">ปิด</a></div>
+</div>

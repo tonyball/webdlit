@@ -1,0 +1,7 @@
+
+<div ng-repeat="badge in user.show_badges" id="details-of-{{badge.id}}" class="modal">
+  <div class="modal-content"><a class="modal-close modal-action"><i class="fa fa-times right red-text fa-lg"></i></a><img ng-src="images/badges/{{badge.group}}/{{badge.image}}" width="30%" class="left"/>
+    <h3>{{badge.name}}</h3>
+    <p>{{badge.description}}</p>
+  </div>
+</div>

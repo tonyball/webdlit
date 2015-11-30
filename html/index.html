@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="newkruDlitApp" ng-controller="DashboardCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ title }} | DLIT ห้องเรียนแห่งคุณภาพ</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <!-- build:css styles/vendor.css-->
+    <!-- bower:css-->
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css">
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css">
+    <!-- endbower-->
+    <!-- endbuild-->
+    <!-- build:css(.tmp) styles/main.css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+    <link rel="stylesheet" href="scripts/flipclock/flipclock.css">
+    <script src="scripts/ASCIIMathML.js"></script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML&amp;delayStartupUntil=configured"></script>
+  </head>
+  <body>
+    <navigation-bar></navigation-bar>
+    <div class="row view-container">
+      <div ng-view ng-click="hideSidenav()"></div>
+    </div>
+    <footer class="black"></footer>
+    <div id="loadingMask" style="background:black;color:white;width:100%;height:100%;position:fixed;top:0;z-index:999999;">
+      <center>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div><img src="images/xdlit-logo.png"><br>
+        <h6 class="white-text">ห้องเรียนแห่งคุณภาพ</h6>
+        <div class="row"></div>
+        <h5 class="animated jello infinite">Loading...</h5>
+      </center>
+    </div><!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script><![endif]-->
+    <script src="//cdn.ckeditor.com/4.5.5/full/ckeditor.js"></script>
+    <!-- build:js scripts/vendor.js-->
+    <!-- bower:js-->
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
+    <script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/ng-simplePagination/simplePagination.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/angular-random-string/src/angular-random-string.js"></script>
+    <script src="bower_components/ng-ckeditor/ng-ckeditor.js"></script>
+    <!-- endbower-->
+    <!-- endbuild-->
+    <!-- build:js(.tmp) scripts/main.js-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/badges.js"></script>
+    <script src="scripts/controllers/classreport.js"></script>
+    <script src="scripts/controllers/classroom.js"></script>
+    <script src="scripts/controllers/course.js"></script>
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/controllers/exams.js"></script>
+    <script src="scripts/controllers/help.js"></script>
+    <script src="scripts/controllers/manageclass.js"></script>
+    <script src="scripts/controllers/notifications.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/signin.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/controllers/studentactivity.js"></script>
+    <script src="scripts/controllers/studentprogress.js"></script>
+    <script src="scripts/controllers/grading.js"></script>
+    <script src="scripts/controllers/sidebar.js"></script>
+    <script src="scripts/directives/navigation-bar.js"></script>
+    <script src="scripts/directives/footer.js"></script>
+    <script src="scripts/directives/dashboard-classroom-list.js"></script>
+    <script src="scripts/directives/dashboard-new-classroom-form.js"></script>
+    <script src="scripts/directives/dashboard-edit-classroom-form.js"></script>
+    <script src="scripts/directives/dashboard-studentlist-modal.js"></script>
+    <script src="scripts/directives/dashboard-search-modal.js"></script>
+    <script src="scripts/directives/classroom-course-list.js"></script>
+    <script src="scripts/directives/classroom-new-course.js"></script>
+    <script src="scripts/directives/classroom-new-content-form.js"></script>
+    <script src="scripts/directives/classroom-new-topic-form.js"></script>
+    <script src="scripts/directives/classroom-new-section-form.js"></script>
+    <script src="scripts/directives/profile-summary.js"></script>
+    <script src="scripts/directives/profile-detail.js"></script>
+    <script src="scripts/directives/profile-badge-modal.js"></script>
+    <script src="scripts/directives/profile-all-badges-modal.js"></script>
+    <script src="scripts/directives/course-sidenav.js"></script>
+    <script src="scripts/directives/course-content.js"></script>
+    <script src="scripts/directives/course-content-video.js"></script>
+    <script src="scripts/directives/course-content-practice.js"></script>
+    <script src="scripts/directives/course-content-test.js"></script>
+    <script src="scripts/directives/course-content-action.js"></script>
+    <script src="scripts/directives/course-clipboard.js"></script>
+    <script src="scripts/controllers/grading-test.js"></script>
+    <script src="scripts/controllers/messages.js"></script>
+    <script src="scripts/controllers/read-message.js"></script>
+    <!-- endbuild-->
+    <script src="scripts/flipclock/flipclock.min.js"></script>
+    <script src="scripts/angular-locale_th-th.js"></script>
+    <script src="scripts/Highcharts/js/highcharts.js"></script>
+    <script src="scripts/Highcharts/js/modules/exporting.js"></script>
+    <script src="scripts/SketchJS/js/sketch.js"></script>
+    <script>
+      $(window).load(function(){
+        setTimeout(function(){
+          $("#loadingMask").hide();
+        }, 100);
+      });
+      
+    </script>
+    <script>
+      jQuery.fn.extend({
+        insertAtCaret: function(myValue){
+          return this.each(function(i) {
+            if (document.selection) {
+              //For browsers like Internet Explorer
+              this.focus();
+              var sel = document.selection.createRange();
+              sel.text = myValue;
+              this.focus();
+            }
+            else if (this.selectionStart || this.selectionStart == '0') {
+              //For browsers like Firefox and Webkit based
+              var startPos = this.selectionStart;
+              var endPos = this.selectionEnd;
+              var scrollTop = this.scrollTop;
+              this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+              this.focus();
+              this.selectionStart = startPos + myValue.length;
+              this.selectionEnd = startPos + myValue.length;
+              this.scrollTop = scrollTop;
+            } else {
+              this.value += myValue;
+              this.focus();
+            }
+          });
+        }
+      });
+      
+    </script>
+  </body>
+</html>

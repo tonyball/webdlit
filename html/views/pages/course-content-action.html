@@ -1,0 +1,20 @@
+
+<div class="card-action">
+  <div class="video-container-action action-container">
+    <object id="slide-item" ng-show="data" width="100%" height="350" data="/contents/XTZ5218/บทเรียน/slide.pdf" type="application/pdf"></object>
+    <div class="left"><b>ความเร็ววิดีโอ</b><br/>
+      <button onclick="adjustSpeed(1);" class="btn pink waves-effect waves-light">X1</button>
+      <button onclick="adjustSpeed(1.5);" class="btn pink waves-effect waves-light">X1.5</button>
+      <button onclick="adjustSpeed(2);" class="btn pink waves-effect waves-light">X2</button>
+    </div>
+    <div class="right hide-on-small-only"><br/>
+      <button class="btn blue waves-effect waves-light"><i class="fa fa-cloud-download left"></i>วิดีโอ</button>
+      <button id="showSlide" ng-click="showSlide()" class="btn green waves-effect waves-light"><i class="fa fa-download left"></i>เอกสารประกอบการเรียน</button>
+    </div>
+    <div class="row"></div>
+  </div>
+  <div style="display:none" class="answer-container-action right">
+    <button ng-click="checkAnswer(); addPracticeActivity(content, classroom.title, classroom.code, 'ทำแบบฝึกหัด (ได้คะแนน '+correct_point+'/'+(correct_point+incorrect_point)+')')" class="btn green waves-effect waves-light check-answer-btn">ตรวจคำตอบ</button>
+    <div class="row"></div>
+  </div>
+</div>

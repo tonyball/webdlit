@@ -1,0 +1,22 @@
+
+<div ng-repeat="class in user_classrooms" id="studentlist-modal-{{class.code}}" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5>{{class.title}} | รายชื่อนักเรียน<small class="right">จำนวนนักเรียน {{class.students.length}} คน</small></h5>
+    <h6 ng-show="class.std_details.length == 0" class="black-text">ไม่มีนักเรียน</h6>
+    <ul class="collection">
+      <li ng-repeat="std in class.std_details" class="collection-item avatar"><img ng-src="images/avatars/{{std.avatar}}" class="circle"/><span class="title">{{std.username}} ({{std.firstname +" "+std.lastname}})</span><a href="" ng-click="removeStudent(class,std.username)" ng-show="isTeacher" class="right">
+          <div class="fa fa-close red-text"></div></a>
+        <p>{{std.email}}</p><a ng-href="#profile/{{std.username}}" target="blank" class="modal-action modal-close orange-text">ดูโปรไฟล์นักเรียน</a>
+      </li>
+    </ul>
+    <div ng-init="addNewStd = false" ng-show="addNewStd" class="input-field col s12">
+      <input type="text" ng-model="new_std_username" id="new-std-username"/>
+      <label for="new-std-username">ชื่อผู้ใช้ของนักเรียน</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button style="margin-left:10px" class="modal-action modal-close waves-effect waves-red btn red">ปิด</button>
+    <button ng-show="isTeacher &amp;&amp; !addNewStd" ng-click="addNewStd = true" class="waves-effect waves-light btn green">เพิ่มนักเรียน</button>
+    <button ng-show="isTeacher &amp;&amp; addNewStd" ng-click="addStudent(class,new_std_username)" class="waves-effect waves-light btn blue">ยืนยัน</button>
+  </div>
+</div>

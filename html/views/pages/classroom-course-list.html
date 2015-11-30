@@ -1,0 +1,23 @@
+
+<div class="row">
+  <div ng-repeat="course in classroom.course_detail" class="col s12 m6 l4">
+    <div class="card animated bounceInDown">
+      <div class="card-image waves-effect waves-block waves-dark"><img ng-src="images/course/{{course.image}}" class="activator responsive-img"/></div>
+      <div class="card-content"><span class="card-title activator black-text"><i class="fa fa-ellipsis-v right"></i>{{course.title}} </span><br/><em>รหัสหลักสูตร: <b>{{course.code}}</b></em>
+        <div class="row"></div>
+        <center><a ng-click="showScoreList(course.code)" ng-show="isTeacher" class="modal-trigger waves-effect waves-orange btn-flat black-text hoverable"><i class="fa fa-files-o left"></i>ผลการสอบ		</a></center>
+        <div class="row"></div>
+        <center><a ng-href="#/course/{{course.code}}" class="waves-effect waves-orange btn green darken-1"><i class="fa fa-play-circle-o left"></i> เข้าเรียน</a><a style="margin-left:15px" ng-href="" ng-show="isTeacher" ng-click="editCourse(course.code,course.image)" class="white-text waves-effect waves-light btn orange darken-1"><i class="fa fa-pencil left"></i> แก้ไขหลักสูตร</a>
+        </center>
+      </div>
+      <div class="card-reveal"><span class="card-title activator black-text">{{class.title}}<i class="fa fa-times right red-text"></i></span>
+        <h6>เนื้อหา</h6>
+        <ul class="collection">
+          <li ng-repeat="content in course.topics" class="collection-item">{{content}}</li>
+        </ul>
+        <ul ng-show="isTeacher" class="collection"><a href="#/studentprogress/{{course.code}}" class="collection-item orange-text text-darken-1 center-align waves-effect waves-orange"> พัฒนาการนักเรียน</a><a href="#/studentactivity/{{course.code}}" class="collection-item orange-text text-darken-1 center-align waves-effect waves-orange"> งานนักเรียน</a></ul>
+        <div class="center"><b class="title">{{course.teacher_name}}</b><br/>ครูผู้สอน	</div>
+      </div>
+    </div>
+  </div>
+</div>

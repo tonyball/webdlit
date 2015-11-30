@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "profile-badge-modal.js",
+  "sourceRoot": "",
+  "sources": [
+    "profile-badge-modal.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CACkC,GADlC,CAAO,EAAP,MAAA,IAAA;WAEI;CAAA,CAAa,IAAb,KAAA,2BAAA;CAAA,CACU,CADV,GACA,EAAA;CAF8B;CADlC,EACkC;CAHlC"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "exams.js",
+  "sourceRoot": "",
+  "sources": [
+    "exams.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CAC2B,GAD3B,CAAO,EACqB,CAD5B,CAAA,IAAA;CAEW,CAEL,CAFqB,GAAjB,CAAiB,IAAvB,EAAA,MAAuB;CAF3B,EAC2B;CAH3B"
+}

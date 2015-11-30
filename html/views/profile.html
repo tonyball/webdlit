@@ -1,0 +1,7 @@
+
+<h3 class="grey-text text-accent-2 center">ข้อมูลส่วนตัว</h3>
+<profile-summary></profile-summary>
+<profile-detail></profile-detail>
+<profile-badge-modal></profile-badge-modal>
+<profile-all-badges-modal></profile-all-badges-modal>
+<div data-drag="true" jqyoui-draggable="jqyoui-draggable" class="all-badges-container animated fadeInDown"><i class="right"><a href="" ng-click="closeBadgesContainer()" class="fa fa-times fa-lg red-text"></a></i><img ng-repeat="badge in user.badge_details" id="{{'badge'+badge.id}}" data-group="{{badge.group}}" data-badge-id="{{badge.id}}" ng-click="selectBadge($event)" ng-src="images/badges/{{badge.group}}/{{badge.image}}" data-position="top" data-delay="50" data-tooltip="{{badge.name}}" width="15%" ng-mouseenter="showTooltip()" class="tooltipped"/></div>

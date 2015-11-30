@@ -1,0 +1,172 @@
+doctype html
+html(ng-app="newkruDlitApp",ng-controller="DashboardCtrl")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title {{ title }} | DLIT ห้องเรียนแห่งคุณภาพ
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width,initial-scale=1.0, maximum-scale=1.0,user-scalable=no")
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+    // build:css styles/vendor.css
+    // bower:css
+    link(rel='stylesheet', href='bower_components/materialize/bin/materialize.css')
+    link(rel='stylesheet', href='bower_components/animate.css/animate.css')
+    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.css')
+    // endbower
+    // endbuild
+    // build:css(.tmp) styles/main.css
+    link(rel="stylesheet", href="styles/main.css")
+    // endbuild
+    link(rel="stylesheet", href="scripts/flipclock/flipclock.css")
+    script(src="scripts/ASCIIMathML.js")
+    script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML&delayStartupUntil=configured")
+  body
+
+    navigation-bar
+      
+    .row.view-container 
+      div(ng-view,ng-click="hideSidenav()")
+
+    footer.black
+
+    #loadingMask(style="background:black;color:white;width:100%;height:100%;position:fixed;top:0;z-index:999999;")
+      center
+        .row
+        .row
+        .row
+        .row
+        .row
+        .row
+        .row
+        img(src="images/xdlit-logo.png")
+        br
+        h6.white-text ห้องเรียนแห่งคุณภาพ
+        .row
+        h5.animated.jello.infinite Loading...
+
+
+    <!--[if lt IE 9]>
+    script(src="bower_components/es5-shim/es5-shim.js")
+    script(src="bower_components/json3/lib/json3.min.js")
+    <![endif]-->
+
+    script(src="//cdn.ckeditor.com/4.5.5/full/ckeditor.js")
+    //- script(src='bower_components/ng-ckeditor/libs/ckeditor/ckeditor.js')
+    // build:js scripts/vendor.js
+    // bower:js
+    script(src='bower_components/es5-shim/es5-shim.js')
+    script(src='bower_components/jquery/dist/jquery.js')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/angular-canvas-painter/dist/angular-canvas-painter.js')
+    script(src='bower_components/angular-cookies/angular-cookies.js')
+    script(src='bower_components/jquery-ui/jquery-ui.js')
+    script(src='bower_components/angular-dragdrop/src/angular-dragdrop.js')
+    script(src='bower_components/angular-google-chart/ng-google-chart.js')
+    script(src='bower_components/materialize/bin/materialize.js')
+    script(src='bower_components/angular-materialize/src/angular-materialize.js')
+    script(src='bower_components/angular-resource/angular-resource.js')
+    script(src='bower_components/angular-route/angular-route.js')
+    script(src='bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='bower_components/momentjs/moment.js')
+    script(src='bower_components/humanize-duration/humanize-duration.js')
+    script(src='bower_components/angular-timer/dist/angular-timer.js')
+    script(src='bower_components/highcharts-ng/dist/highcharts-ng.js')
+    script(src='bower_components/json3/lib/json3.min.js')
+    script(src='bower_components/ng-simplePagination/simplePagination.js')
+    script(src='bower_components/ng-file-upload/ng-file-upload.js')
+    script(src='bower_components/angular-random-string/src/angular-random-string.js')
+    script(src='bower_components/ng-ckeditor/ng-ckeditor.js')
+    // endbower
+    // endbuild
+
+    // build:js(.tmp) scripts/main.js
+    script(src="scripts/app.js")
+    script(src="scripts/controllers/main.js")
+    script(src="scripts/controllers/badges.js")
+    script(src="scripts/controllers/classreport.js")
+    script(src="scripts/controllers/classroom.js")
+    script(src="scripts/controllers/course.js")
+    script(src="scripts/controllers/dashboard.js")
+    script(src="scripts/controllers/exams.js")
+    script(src="scripts/controllers/help.js")
+    script(src="scripts/controllers/manageclass.js")
+    script(src="scripts/controllers/notifications.js")
+    script(src="scripts/controllers/profile.js")
+    script(src="scripts/controllers/search.js")
+    script(src="scripts/controllers/settings.js")
+    script(src="scripts/controllers/signin.js")
+    script(src="scripts/controllers/signup.js")
+    script(src="scripts/controllers/studentactivity.js")
+    script(src="scripts/controllers/studentprogress.js")
+    script(src="scripts/controllers/grading.js")
+    script(src="scripts/controllers/sidebar.js")
+    script(src="scripts/directives/navigation-bar.js")
+    script(src="scripts/directives/footer.js")
+    script(src="scripts/directives/dashboard-classroom-list.js")
+    script(src="scripts/directives/dashboard-new-classroom-form.js")
+    script(src="scripts/directives/dashboard-edit-classroom-form.js")
+    script(src="scripts/directives/dashboard-studentlist-modal.js")
+    script(src="scripts/directives/dashboard-search-modal.js")
+    script(src="scripts/directives/classroom-course-list.js")
+    script(src="scripts/directives/classroom-new-course.js")
+    script(src="scripts/directives/classroom-new-content-form.js")
+    script(src="scripts/directives/classroom-new-topic-form.js")
+    script(src="scripts/directives/classroom-new-section-form.js")
+    script(src="scripts/directives/profile-summary.js")
+    script(src="scripts/directives/profile-detail.js")
+    script(src="scripts/directives/profile-badge-modal.js")
+    script(src="scripts/directives/profile-all-badges-modal.js")
+    script(src="scripts/directives/course-sidenav.js")
+    script(src="scripts/directives/course-content.js")
+    script(src="scripts/directives/course-content-video.js")
+    script(src="scripts/directives/course-content-practice.js")
+    script(src="scripts/directives/course-content-test.js")
+    script(src="scripts/directives/course-content-action.js")
+    script(src="scripts/directives/course-clipboard.js")
+    script(src="scripts/controllers/grading-test.js")
+    script(src="scripts/controllers/messages.js")
+    script(src="scripts/controllers/read-message.js")
+    // endbuild
+
+    script(src="scripts/flipclock/flipclock.min.js")
+    script(src="scripts/angular-locale_th-th.js")
+    script(src="scripts/Highcharts/js/highcharts.js")
+    script(src="scripts/Highcharts/js/modules/exporting.js")
+    script(src="scripts/SketchJS/js/sketch.js")
+
+    script.
+      $(window).load(function(){
+        setTimeout(function(){
+          $("#loadingMask").hide();
+        }, 100);
+      });
+      
+    script.
+      jQuery.fn.extend({
+        insertAtCaret: function(myValue){
+          return this.each(function(i) {
+            if (document.selection) {
+              //For browsers like Internet Explorer
+              this.focus();
+              var sel = document.selection.createRange();
+              sel.text = myValue;
+              this.focus();
+            }
+            else if (this.selectionStart || this.selectionStart == '0') {
+              //For browsers like Firefox and Webkit based
+              var startPos = this.selectionStart;
+              var endPos = this.selectionEnd;
+              var scrollTop = this.scrollTop;
+              this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+              this.focus();
+              this.selectionStart = startPos + myValue.length;
+              this.selectionEnd = startPos + myValue.length;
+              this.scrollTop = scrollTop;
+            } else {
+              this.value += myValue;
+              this.focus();
+            }
+          });
+        }
+      });
+

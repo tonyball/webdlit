@@ -1,0 +1,22 @@
+
+<h3 class="grey-text text-accent-2 center">เข้าสู่ระบบ</h3>
+<div class="col s12 m10 offset-m1 l6 offset-l3">
+  <div class="card animated bounceInDown">
+    <div class="card-content">
+      <form>
+        <div class="input-field"><i class="fa fa-user prefix"></i>
+          <input id="username" type="text" ng-model="username" required="required" class="validate"/>
+          <label for="username" data-error="ชื่อผู้ใช้ไม่ถูกต้อง" style="left: 0 !important">ชื่อผู้ใช้</label>
+        </div>
+        <div class="input-field"><i class="fa fa-key prefix"></i>
+          <input id="password" data-error="รหัสผ่านไม่ถูกต้อง" type="password" ng-model="password" required="required" class="validate"/>
+          <label for="password" style="left: 0 !important">รหัสผ่าน</label>
+        </div><br/>
+        <center>
+          <button type="submit" ng-click="signin()" class="btn waves-effect waves-light orange">เข้าสู่ระบบ<i class="fa fa-send left"></i></button>
+        </center><br/>
+        <div class="right"><a href="#/signup"><em>ลงทะเบียน	 | </em></a><a href=""><em>ลืมรหัสผ่าน</em></a></div>
+      </form>
+    </div>
+  </div>
+</div>

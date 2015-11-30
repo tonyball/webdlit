@@ -1,0 +1,35 @@
+
+<center ng-show="isTested" class="test-container content-container">
+  <div class="card-title black-text">คุณได้สอบไปเรียบร้อยแล้ว</div>
+  <p>เมื่อ {{testdate | date: "EEEE, dd MMMM yyyy 'เวลา' HH:mm:ss 'น.'"}}</p><br/><a href="#/grading/{{score_id}}" class="btn orange">ดูผลการสอบ</a>
+</center>
+<div style="display:none" ng-show="!isTested" class="test-container content-container">
+  <div style="padding-left:25rem" class="exam-clock"></div>
+  <object id="test-item" width="100%" height="550" data="" type="application/pdf" class="col"></object>
+  <div class="answer-test-container animated slideInRight"><span class="card-title black-text">กระดาษคำตอบ</span>
+    <div class="row">
+      <h6>เลือกคำตอบที่ถูกต้องที่สุด</h6>
+      <div class="divider"></div>
+    </div>
+    <div ng-repeat="answer in tests[0].answer_box" class="row">
+      <p class="no left-align">ข้อ {{answer}}.</p><br/>
+      <form class="answer-set">
+        <input name="no{{answer}}" type="radio" id="ans{{answer}}1" value="1" ng-model="submit_answer[answer]" class="multiple"/>
+        <label for="ans{{answer}}1" class="answer multiple"> 1</label>
+        <input name="no{{answer}}" type="radio" id="ans{{answer}}2" value="2" ng-model="submit_answer[answer]" class="multiple"/>
+        <label for="ans{{answer}}2" class="answer multiple"> 2</label>
+        <input name="no{{answer}}" type="radio" id="ans{{answer}}3" value="3" ng-model="submit_answer[answer]" class="multiple"/>
+        <label for="ans{{answer}}3" class="answer multiple"> 3</label>
+        <input name="no{{answer}}" type="radio" id="ans{{answer}}4" value="4" ng-model="submit_answer[answer]" class="multiple"/>
+        <label for="ans{{answer}}4" class="answer multiple"> 4</label>
+        <input name="no{{answer}}" type="radio" id="ans{{answer}}5" value="5" ng-model="submit_answer[answer]" class="multiple"/>
+        <label for="ans{{answer}}5" class="answer multiple"> 5</label>
+      </form>
+      <div class="row"></div>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="card-action">
+    <div class="right"><br/><br/><a href="" type="submit" ng-click="submitAnswer(); addTestActivity(content.title, classroom.title, classroom.code, 'ทำแบบทดสอบ (ได้คะแนน '+current_score+'/'+tests[0].number_of_question[test_number-1]+')')" data-target="score-modal" class="btn orange waves-effect waves-light finish-exam white-text submit-btn"><i class="fa fa-send-o left"></i>ส่งคำตอบ</a><br/></div>
+  </div>
+</div>

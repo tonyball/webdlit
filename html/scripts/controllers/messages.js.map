@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "messages.js",
+  "sourceRoot": "",
+  "sources": [
+    "messages.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CAC8B,GAD9B,CAAO,EACwB,CAD/B,IAAA,CAAA;CAEW,CAEL,CAFqB,GAAjB,CAAiB,IAAvB,EAAA,MAAuB;CAF3B,EAC8B;CAH9B"
+}

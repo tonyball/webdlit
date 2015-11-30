@@ -1,0 +1,88 @@
+
+<div class="row">
+  <div class="col s12 m6 l4">
+    <div class="card deep-orange accent-1">
+      <div class="card-image waves-effect waves-block waves-dark">
+        <div class="row"></div>
+        <center><img src="images/badges/meteorite/meteorite.png" class="activator badge-image"/></center>
+      </div>
+      <div class="card-content"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-ellipsis-v right"></i>Meteorite Badges</span>
+        <p class="grey-text text-darken-4">Meteorite badges are common and easy to earn when just getting started.</p>
+      </div>
+      <div class="card-reveal"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-times right red-text"></i>Meteorite Badges</span>
+        <ul class="collection">
+          <li ng-repeat="badge in meteorites" class="collection-item avatar"><img ng-src="images/badges/meteorite/{{badge.image}}" title="{{badge.description}}" data-position="bottom" data-delay="50" data-tooltip="{{badge.name}}" class="circle tooltipped"/><b class="title">{{badge.name}}</b><br/><em class="grey-text">{{badge.description}}</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6 l4">
+    <div class="card teal">
+      <div class="card-image waves-effect waves-block waves-dark">
+        <div class="row"></div>
+        <center><img src="images/badges/moon/moon.png" class="activator badge-image"/></center>
+      </div>
+      <div class="card-content"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-ellipsis-v right"></i>Moon Badges</span>
+        <p class="grey-text text-darken-4">Moon badges are uncommon and represent an investment in learning.</p>
+      </div>
+      <div class="card-reveal"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-times right red-text"></i>Moon Badges</span>
+        <ul class="collection">
+          <li ng-repeat="badge in moons" class="collection-item avatar"><img ng-src="images/badges/moon/{{badge.image}}" title="{{badge.description}}" data-position="bottom" data-delay="50" data-tooltip="{{badge.name}}" class="circle tooltipped"/><b class="title">{{badge.name}}</b><br/><em class="grey-text">{{badge.description}}</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6 l4">
+    <div class="card pink accent-1">
+      <div class="card-image waves-effect waves-block waves-dark">
+        <div class="row"></div>
+        <center><img src="images/badges/blackhole/blackhole.png" class="activator badge-image"/></center>
+      </div>
+      <div class="card-content"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-ellipsis-v right"></i>Blackhole Badges</span>
+        <p class="grey-text text-darken-4">Black Hole badges are legendary and unknown. They are the rarest Khan Academy awards.</p>
+      </div>
+      <div class="card-reveal"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-times right red-text"></i>Blackhole Badges</span>
+        <ul class="collection">
+          <li ng-repeat="badge in blackholes" class="collection-item avatar"><img ng-src="images/badges/blackhole/{{badge.image}}" title="{{badge.description}}" data-position="bottom" data-delay="50" data-tooltip="{{badge.name}}" class="circle tooltipped"/><b class="title">{{badge.name}}</b><br/><em class="grey-text">{{badge.description}}</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6 l4 offset-l2">
+    <div class="card amber accent-1">
+      <div class="card-image waves-effect waves-block waves-dark">
+        <div class="row"></div>
+        <center><img src="images/badges/sun/sun.png" class="activator badge-image"/></center>
+      </div>
+      <div class="card-content"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-ellipsis-v right"></i>Sun Badges</span>
+        <p class="grey-text text-darken-4">Sun badges are epic. Earning them is a true challenge, and they require impressive dedication</p>
+      </div>
+      <div class="card-reveal"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-times right red-text"></i>Sun Badges</span>
+        <ul class="collection">
+          <li ng-repeat="badge in suns" class="collection-item avatar"><img ng-src="images/badges/sun/{{badge.image}}" title="{{badge.description}}" data-position="bottom" data-delay="50" data-tooltip="{{badge.name}}" class="circle tooltipped"/><b class="title">{{badge.name}}</b><br/><em class="grey-text">{{badge.description}}</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6 l4 offset-m3">
+    <div class="card green accent-1">
+      <div class="card-image waves-effect waves-block waves-dark">
+        <div class="row"></div>
+        <center><img src="images/badges/earth/earth.png" class="activator badge-image"/></center>
+      </div>
+      <div class="card-content"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-ellipsis-v right"></i>Earth Badges</span>
+        <p class="grey-text text-darken-4">Earth badges are rare. They require a significant amount of learning.</p>
+      </div>
+      <div class="card-reveal"><span class="card-title activator grey-text text-darken-4"><i class="fa fa-times right red-text"></i>Earth Badges</span>
+        <ul class="collection">
+          <li ng-repeat="badge in earths" class="collection-item avatar"><img ng-src="images/badges/earth/{{badge.image}}" title="{{badge.description}}" data-position="bottom" data-delay="50" data-tooltip="{{badge.name}}" class="circle tooltipped"/><b class="title">{{badge.name}}</b><br/><em class="grey-text">{{badge.description}}</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+   $('.tooltipped').tooltip({delay: 50});
+  })
+</script>

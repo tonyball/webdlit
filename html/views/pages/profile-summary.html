@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col s12 m10 l10 offset-m1 offset-l1">
+    <div class="card animated fadeIn">
+      <div class="card-content grey darken-2"><span class="hide-on-small-only"><img ng-src="images/avatars/{{user.avatar}}" class="left"/></span><span class="card-title white-text">{{user.title+user.firstname+" "+user.lastname }} <em class="orange-text">@{{user.username}}</em></span>
+        <div ng-show="isCurrentStudent" class="summary-coins-container"><img src="images/icons/Dice.png" width="24" class="left"/><b class="yellow-text text-darken-1">{{ user.total_scores }} คะแนน	</b></div>
+        <div data-target="all-badges-modal" ng-click="showAllBadges()" ng-show="isCurrentStudent" class="summary-cards-container hide-on-small-only modal-trigger"><img src="images/badges/meteorite/meteorite.png" height="34"/><span class="white-text">{{ user.meteorite }}</span><img src="images/badges/moon/moon.png" height="34"/><span class="white-text">{{ user.moon }}</span><img src="images/badges/earth/earth.png" height="34"/><span class="white-text">{{ user.earth }}</span><img src="images/badges/sun/sun.png" height="34"/><span class="white-text">{{ user.sun }}</span><img src="images/badges/blackhole/blackhole.png" height="34"/><span class="white-text">{{ user.blackhole }}</span></div>
+      </div>
+      <div class="card-action"><br/>
+        <p class="bio">{{user.bio}}</p>
+        <p class="location">{{user.location}}</p>
+        <div class="divider"></div><br/>
+        <center ng-show="isCurrentStudent" class="hide-on-med-and-down"><a data-value="card-collection" class="white-text btn orange card-collection-btn action-btn">เหรียญ </a><a data-value="recent-activity" class="black-text btn-flat recent-activity-btn action-btn">กิจกรรมล่าสุด</a><a data-value="learning-progress" class="black-text btn-flat progress-btn action-btn">ภาพรวมการเรียน</a></center>
+        <div ng-show="isCurrentStudent" class="hide-on-large-only">
+          <select class="browser-default">
+            <option value="card-collection">คลังเหรียญ </option>
+            <option value="recent-activity">กิจกรรมล่าสุด</option>
+            <option value="learning-progress">ภาพรวมการเรียน</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

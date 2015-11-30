@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "notifications.js",
+  "sourceRoot": "",
+  "sources": [
+    "notifications.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CACmC,EAAA,CADnC,CAAO,EAC6B,CADpC,KAAA,IAAA;CAEc,EAAQ,EAAnB,KAAU,CAAV;CAFH,EACmC;CAHnC"
+}

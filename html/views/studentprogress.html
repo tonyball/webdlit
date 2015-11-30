@@ -1,0 +1,108 @@
+
+<h3 class="grey-text text-accent-2 center">พัฒนาการนักเรียน</h3>
+<div class="row"></div>
+<div class="col s12 m4">
+  <label>ห้องเรียน</label>
+  <select class="browser-default">
+    <option ng-repeat="class in classes" value="{{$index}}" ng-model="current_class_index">{{class.title}}</option>
+  </select>
+</div>
+<div class="col s12 m4">
+  <label>หลักสูตร</label>
+  <select class="browser-default course-selector">
+    <option ng-repeat="course in classes[current_class_index].course_details" value="{{course.code}}" ng-model="current_course_code" ng-change="showContent(current_course_code)">{{course.title}}</option>
+  </select>
+</div>
+<div class="row"></div>
+<div ng-repeat="course in classes[current_class_index].course_details" class="col s12 {{course.code}}">
+  <label>เลือกนักเรียน</label>
+  <select class="browser-default hide-on-med-and-up select-student">
+    <option ng-repeat="std in course.std_details" value="{{std.username}}">{{std.firstname+" "+std.lastname}} ({{std.username}})</option>
+  </select>
+</div>
+<div ng-repeat="course in classes[current_class_index].course_details" class="row {{course.code}}">
+  <div class="col m4 hide-on-small-only">
+    <div class="card animated slideInLeft">
+      <div class="card-action">
+        <div class="input-field"><i class="fa fa-search prefix"></i>
+          <input id="seach-box" type="text" ng-model="search"/>
+          <label for="seach-box">ค้นหา</label>
+        </div>
+      </div>
+      <div class="card-content"><span class="card-title black-text">{{course.title}}<small class="right">{{course.code}}				</small></span>
+        <table class="tableForStdDetail bordered">
+          <thead>
+            <tr class="orange darken-2 white-text">
+              <th data-field="std_username">ชื่อผู้ใช้</th>
+              <th data-field="std_fullname">ชื่อ-นามสกุล</th>
+              <th data-field="std_obcoins" class="right-align">คะแนน</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="std in course.std_details | filter:search" data-username="{{std.username}}" ng-click="showDetail($event); toDrawChart($event)" ng-class="{'selected': $index == 0}" class="stdname">
+              <td data-username="{{std.username}}">{{std.username}}</td>
+              <td data-username="{{std.username}}">{{std.firstname+" "+std.lastname}}</td>
+              <td data-username="{{std.username}}" class="right-align">{{std.total_scores}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m8">
+    <div ng-repeat="std in course.std_details" id="{{std.username}}" ng-class="{'hide-card': $index != 0}" class="card stdDetailCard animated rollIn">
+      <div class="card-content"><span class="card-title orange-text text-darken-2">{{std.firstname+" "+std.lastname}}<small class="right"><em>@{{std.username}}</em></small></span>
+        <center>
+          <div class="subject-filter-btn-container">
+            <div ng-click="switchContent($event)" data-value="recent-activity" class="btn-flat hoverable recent-activity-btn active"><img src="images/icons/Survey.png"/>
+              <p>กิจกรรมที่ทำ</p>
+            </div>
+            <div ng-click="switchContent($event)" data-value="chart-summary" class="btn-flat cards-summary-btn hoverable"><img src="images/icons/ComboChart.png"/>
+              <p>ภาพรวมการเรียน</p>
+            </div>
+            <div ng-click="switchContent($event)" data-value="cards-summary" class="btn-flat cards-summary-btn hoverable"><img src="images/icons/Medal.png"/>
+              <p>เหรียญรางวัล</p>
+            </div>
+          </div>
+        </center>
+      </div>
+      <div class="card-action">
+        <div class="content recent-activity animated fadeIn">
+          <p ng-repeat="activity in std.activities | orderBy: '-datetime'" class="grey-text">{{activity.datetime | date:'medium'}}<a href="" class="black-text"> {{activity.activity}}</a><em><a href="#/grading/{{activity.score_id}}" ng-show="activity.type == 'score'"> ดูรายละเอียด</a><a href="" ng-click="setAndshowDetail(std,activity)" ng-show="activity.type == 'practice'">ดูรายละเอียด</a></em>
+            <div class="divider"></div>
+          </p>
+        </div>
+        <div class="content chart-summary animated fadeIn hide-card">
+          <highchart config="chartConfig" style="width: 800px; height: 400px; margin: 0 auto"></highchart>
+        </div>
+        <div class="content cards-summary animated fadeIn hide-card"><img ng-repeat="badge in std.badge_details" ng-src="images/badges/{{badge.group}}/{{badge.image}}" width="125" data-position="top" data-delay="50" data-tooltip="{{badge.name}}" ng-mouseenter="showTooltip()" class="tooltipped"/></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-init="showActivityDetail = false" ng-show="showActivityDetail" class="col s12 m8 offset-m2 animated slideInDown show-detail">
+  <div class="card">
+    <div class="card-content"><span class="card-title black-text">รายละเอียดคะแนน | {{seeDetail.student.username}} ({{seeDetail.student.firstname+' '+seeDetail.student.lastname}})</span><br/><img ng-src="contents/{{seeDetail.activity.content.course_code}}/{{seeDetail.activity.content.section_name}}/{{seeDetail.activity.content.content_url}}" ng-show="showQuestion" width="100%"/>
+      <center>
+        <button ng-click="showQuestion = true" ng-show="showQuestion == false" class="btn orange">แสดงโจทย์</button>
+        <button ng-click="showQuestion = false" ng-show="showQuestion == true" class="btn blue">ซ่อนโจทย์</button>
+      </center><br/><b>คำสั่ง</b> {{seeDetail.activity.content.remark}}
+      <div class="divider"></div><br/>
+      <table class="highlight">
+        <thead class="orange lighten-4">
+          <th>คำตอบของนักเรียน</th>
+          <th>เฉลยที่ถูกต้อง</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="ans in seeDetail.activity.content.answer_of_question track by $index">
+            <td ng-class="{'red-text': seeDetail.activity.content.submit_answer[$index+1] != ans,'green-text': seeDetail.activity.content.submit_answer[$index+1] == ans}">{{seeDetail.activity.content.submit_answer[$index+1]}}</td>
+            <td>{{ans}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-action">
+      <button ng-click="showActivityDetail = false" class="btn red">ปิด</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "course-content.js",
+  "sourceRoot": "",
+  "sources": [
+    "course-content.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CAC8B,GAD9B,CAAO,EAAP,MAAA;WAEI;CAAA,CAAa,IAAb,KAAA,sBAAA;CAAA,CACU,CADV,GACA,EAAA;CAF0B;CAD9B,EAC8B;CAH9B"
+}

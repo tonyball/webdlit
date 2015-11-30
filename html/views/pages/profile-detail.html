@@ -1,0 +1,59 @@
+
+<div ng-show="isCurrentStudent" class="row">
+  <div class="col s12 m10 l10 offset-m1 offset-l1">
+    <div class="card data-card card-collection animated fadeIn">
+      <div class="card-content orange darken-2"><img src="images/icons/Coins.png" class="left"/><span class="card-title white-text">แสดงเหรียญ</span><a ng-show="current_user.username == user.username" ng-click="openBadgesContainer()" class="btn-flat right hoverable">แก้ไขเหรียญที่แสดง</a></div>
+      <div class="card-action">
+        <div class="card-collection-container center"><img ng-repeat="badge in user.show_badges" ng-click="showBadgeDetail(badge.id)" data-target="details-of-{{badge.name}}" title="คลิกเพื่อดูรายละเอียด" ng-src="images/badges/{{badge.group}}/{{badge.image}}" data-position="top" data-delay="50" data-tooltip="{{badge.name}}" width="15%" ng-mouseenter="showTooltip()" class="tooltipped modal-trigger"/><img ng-repeat="slot in slots" ng-src="images/badges/slot.png" width="15%" class="slot"/></div>
+      </div>
+    </div>
+    <div style="display:none" class="card data-card recent-activity animated">
+      <div class="card-content orange darken-2"><img src="images/icons/Survey.png" class="left"/><span class="card-title white-text">กิจกรรมล่าสุด</span></div>
+      <div class="card-action recent-activity-list">
+        <div class="card-collection-container">
+          <div ng-repeat="activity in user.activities | orderBy:'-datetime'"><b class="grey-text">{{activity.datetime | date:"dd MMMM yyyy 'เวลา' HH:mm 'น.'"}}</b><br/>{{activity.activity}}<b ng-show="activity.type == 'score'"> <a href="#/grading/{{activity.score_id}}">ดูผลการสอบ</a></b><br/><br/>
+            <li class="divider"></li>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:none" class="card data-card learning-progress animated">
+      <div class="card-content orange darken-2"><img src="images/icons/GraduationCap.png" class="left"/><span class="card-title white-text">ภาพรวมการเรียน</span></div>
+      <div class="card-action">
+        <div class="card-collection-container">
+          <div id="chart" config="chartConfig" style="width: 80%; height: 400px; margin: auto 0"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="!isCurrentStudent" class="row">
+  <div class="col s12 m10 l10 offset-m1 offset-l1">
+    <div class="card data-card card-collection animated fadeIn">
+      <div class="card-content orange darken-2"><img src="images/icons/AskQuestion.png" class="left"/><span class="card-title white-text">กล่องข้อความ</span>
+        <div ng-show="current_user.username == user.username" class="input-field col s12 m6 right"><i class="prefix fa fa-search white-text"></i>
+          <input type="text" ng-model="search"/>
+        </div>
+      </div>
+      <div ng-show="current_user.username != user.username" class="card-action">
+        <div class="card-collection-container">
+          <div class="input-field col s12"><b for="messages">ฝากข้อความหรือข้อสงสัย</b>
+            <textarea ckeditor="editorOptions" id="messages" ng-init="text_message = ''" ng-model="text_message"></textarea>
+          </div>
+          <div class="row"></div>
+          <center>
+            <button ng-click="sendMessage()" ng-show="text_message != ''" class="btn blue waves-effect waves-light">ส่งข้อความ</button>
+          </center>
+        </div>
+      </div>
+      <div class="card-action">
+        <div class="card-collection-container">
+          <div ng-repeat="msg in user.messages | orderBy: '-datetime' | filter: search" class="input-field col s12"><a href="#/messages/{{msg.message_id}}" ng-show="current_user.username == user.username" class="right">ตอบข้อความ</a><b for="messages" class="grey-text">ข้อความของ {{msg.sender}}</b>
+            <div id="messages" ng-disabled="true" ng-bind-html="msg.message"></div>
+            <div class="divider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

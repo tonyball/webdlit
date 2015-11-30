@@ -1,0 +1,16 @@
+
+<div class="row">
+  <div ng-repeat="class in user_classrooms" class="col s12 m6 l4">
+    <div class="card animated bounceInDown">
+      <div class="card-image waves-effect waves-block waves-dark"><img ng-src="images/classroom/{{class.image}}" class="responsive-img"/></div>
+      <div class="card-content"><span class="card-title activator black-text">{{class.title}}</span><a title="ลบห้องเรียน" style="margin-left:15px" href="" ng-show="isTeacher" ng-click="removeClassroom(class.code,class.image)" class="fa fa-trash fa-2x red-text darken-1 right"></a><br/><em>รหัสห้องเรียน: </em><b>{{class.code}}</b><br/><em>ครูประจำห้องเรียน:   </em><b><a href="#/profile/{{class.username}}">{{class.username}} </a></b><br/>
+        <div ng-show="isTeacher"><em>รหัสยืนยันการเข้าห้องเรียน:  </em><b>{{class.verification_code}}</b></div>
+        <div class="row"></div>
+        <center><a ng-click="showStdList(class.code)" class="modal-trigger waves-effect waves-orange btn-flat black-text hoverable"><i class="fa fa-users left"></i>รายชื่อนักเรียน			</a></center>
+      </div>
+      <div class="card-action">
+        <center><a ng-href="#/classroom/{{class.code}}" class="white-text waves-effect waves-light btn green darken-1 enter-class-btn"><i class="fa fa-sign-in left"></i> เข้าห้องเรียน</a><a style="margin-left:15px" ng-href="" ng-show="isTeacher" ng-click="showEditClassroom(class)" class="white-text waves-effect waves-light btn orange darken-1 enter-class-btn"><i class="fa fa-pencil left"></i> แก้ไข</a></center>
+      </div>
+    </div>
+  </div>
+</div>

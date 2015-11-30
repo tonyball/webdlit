@@ -1,0 +1,20 @@
+
+<div ng-init="i_section = 1; isDetailed = false; i_content = 1" class="row">
+  <h6>บทเรียน (เนื้อหาจะถูกจัดเรียนตามลำดับที่สร้าง)</h6><b>หมวดหมู่ (Section)</b><br/>
+  <div ng-repeat="section in course_sections track by $index" class="card">
+    <div class="card-content">
+      <p ng-click="isDetailed = !isDetailed" title="แสดงรายละเอียด" style="cursor: pointer"><b>เพิ่มเนื้อหาหมวดหมู่ที่ {{$index+1}}</b><a href="" ng-show="!isDetailed" ng-click="isDetailed = true" title="แสดงรายละเอียด" class="fa fa-caret-down right black-text"></a><a href="" ng-show="isDetailed" ng-click="isDetailed = false" title="ซ่อนรายละเอียด" class="fa fa-caret-up right black-text"></a></p>
+      <div ng-show="isDetailed">
+        <div class="input-field">
+          <input id="course-sections-{{$index}}" ng-model="section.name" type="text"/>
+          <label for="course-sectoins-{{$index}}" style="left: 0 !important">ชื่อหมวดหมู่ที่ {{$index+1}}</label>
+        </div>
+        <classroom-new-content-form></classroom-new-content-form><br/>
+      </div>
+    </div>
+  </div><a href="" title="เพิ่มหมวดหมู่" ng-click="addSection()" class="addSectionBtn btn orange left">
+    <div class="fa fa-plus-circle fa-2x"></div></a>
+  <div ng-show="i_section &gt; 1" ng-click="removeSection()" style="margin-left: 10px" class="removeSectionBtn btn red left">
+    <div class="fa fa-times-circle fa-2x"></div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+<h3 class="grey-text text-accent-2 center">ลงทะเบียน</h3>
+<div class="col s12 m10 l8 offset-m1 offset-l2">
+  <div style="padding: 15px" class="white animated fadeIn z-depth-1">
+    <form name="signupForm">
+      <div class="input-field col s12 m6"><i class="fa fa-font prefix"></i>
+        <input type="text" id="firstname" ng-model="user_data.firstname" required="required" class="validate"/>
+        <label for="firstname">ชื่อ</label>
+      </div>
+      <div class="input-field col s12 m6"><i class="fa fa-font prefix hide-on-med-and-up"></i>
+        <input type="text" id="lastname" ng-model="user_data.lastname" required="required" class="validate"/>
+        <label for="lastname">นามสกุล</label>
+      </div>
+      <div class="input-field col s12"><i class="fa fa-user prefix"></i>
+        <input type="text" id="username" ng-model="user_data.username" required="required" pattern="[A-Za-z0-9]{4,}" ng-change="checkDuplicateUsername()" class="validate"/>
+        <label for="username" data-error="ไม่สามารถใช้ได้" data-success="สามารถใช้ได้">ชื่อผู้ใช้</label>
+      </div>
+      <div class="input-field col s12 m6"><i class="fa fa-key prefix"></i>
+        <input type="password" id="password" ng-model="user_data.password" data-error="รหัสผ่านไม่ตรงกัน" required="required"/>
+        <label for="password">รหัสผ่าน</label>
+      </div>
+      <div class="input-field col s12 m6"><i class="fa fa-key prefix hide-on-med-and-up"></i>
+        <input type="password" id="confirmpassword" ng-model="user_data.confirmpassword" data-error="รหัสผ่านไม่ตรงกัน" required="required" ng-change="checkConfirm($event)"/>
+        <label for="confirmpassword">ยืนยันรหัสผ่าน</label>
+      </div>
+      <div class="input-field col s12"><i class="fa fa-envelope prefix"></i>
+        <input type="email" id="email" ng-model="user_data.email" ng-change="checkDuplicateEmail()" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$" class="validate"/>
+        <label for="email" data-error="ไม่สามารถใช้ได้" data-success="สามารถใช้ได้">อีเมลล์</label>
+      </div>
+      <div class="input-field col s12"><i class="fa fa-birthday-cake prefix"></i>
+        <input type="date" id="birthdate" ng-model="user_data.birthdate" required="required" class="datepicker"/>
+        <label for="birthdate">วันเกิด</label>
+      </div>
+      <center>
+        <button type="submit" ng-click="signup()" ng-disabled="!signupForm.$valid" class="btn orange waves-effect waves-light">สมัครสมาชิก</button>
+      </center>
+    </form>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+   $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 30
+   });
+  })
+</script>

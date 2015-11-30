@@ -1,0 +1,70 @@
+
+<div ng-repeat="content in section.contents track by $index" class="card-action">
+  <div class="input-field">
+    <input id="course-contents-{{$index}}" ng-model="section.content.title" type="text"/>
+    <label for="course-contents-{{$index}}" style="left: 0 !important">ชื่อเนื้อหาที่ {{$index+1}}</label>
+  </div>
+  <select ng-model="content.type" ng-change="setLogo(content)" class="browser-default">
+    <option disabled="disabled" selected="selected" value="">เลือกประเภท</option>
+    <option value="video">บทเรียน</option>
+    <option value="practice">แบบฝึกหัด</option>
+    <option value="test">แบบทดสอบ</option>
+  </select>
+  <div ng-show="content.type == 'video'">
+    <div class="input-field">
+      <input id="course-contents-url" ng-model="content.content_url" type="text"/>
+      <label for="course-contents-url" style="left: 0 !important">ที่อยู่วิดีโอ / Video URL</label>
+    </div>
+    <div class="input-field">
+      <input id="course-contents-slide" ng-model="content.slide" type="text"/>
+      <label for="course-contents-slide" style="left: 0 !important">ที่อยู่ไฟล์เอกสารประกอบการสอน / PDF SLIDE URL</label>
+    </div>
+  </div>
+  <div ng-show="content.type == 'practice'">
+    <div class="input-field">
+      <input id="course-contents-url" ng-model="content.content_url" type="text"/>
+      <label for="course-contents-url" style="left: 0 !important">ที่อยู่รูปภาพ / Image URL / PDF URL</label>
+    </div>
+    <div class="input-field">
+      <input id="course-contents-number-of-question" ng-model="content.number_of_question" type="text"/>
+      <label for="course-contents-number-of-question" style="left: 0 !important">จำนวนข้อ</label>
+    </div>
+    <select ng-model="content.answer_type" class="browser-default">
+      <option disabled="disabled" selected="selected" value="">เลือกชนิดคำตอบ</option>
+      <option value="tfq">เลือกถูกผิด</option>
+      <option value="text">ถามตอบ/เติมคำ แบบคำตอบเดียว</option>
+      <option value="multiple">คำตอบ 4 ตัวเลือก</option>
+      <option value="multitext">ถามตอบ/เติมคำ แบบหลายคำตอบ</option>
+      <option value="tfqx">เลือกถูกผิด แบบมีคำตอบเสริม</option>
+      <option value="ordering">เรียงลำดับ สลับที่</option>
+      <option value="matching">จับคู่คำตอบที่ถูกต้อง</option>
+      <option value="dragdrop">คำตอบแบบลากวาง</option>
+    </select><b ng-show="answer_box">ส่วนของเฉลย</b>
+    <div ng-repeat="ans in content.answer_of_question track by $index" ng-show="answer_box" class="input-field">
+      <input id="course-contents-ans{{$index}}" ng-model="ans" type="text"/>
+      <label for="course-contents-ans{{$index}}" style="left: 0 !important">เฉลยข้อที่ {{$index+1}}</label>
+    </div><br/><a href="" ng-click="addAnswer(content); answer_box = true" class="btn green waves-effect waves-light white-text">เพิ่มเฉลย</a>
+  </div>
+  <div ng-show="content.type == 'test'">
+    <div class="input-field">
+      <input id="course-contents-url" ng-model="content.content_url" type="text"/>
+      <label for="course-contents-url" style="left: 0 !important">ที่อยู่ไฟล์ข้อสอบ / PDF URL</label>
+    </div>
+    <div class="input-field">
+      <input id="course-contents-number-of-question" ng-model="content.number_of_question" type="text"/>
+      <label for="course-contents-number-of-question" style="left: 0 !important">จำนวนข้อ</label>
+    </div>
+    <div class="input-field">
+      <input id="course-contents-time" ng-model="content.time" type="text"/>
+      <label for="course-contents-time" style="left: 0 !important">เวลาที่ใช้ทำข้อสอบ</label>
+    </div><b ng-show="answer_box">ส่วนของเฉลย</b>
+    <div ng-repeat="ans in content.answer_of_question track by $index" ng-show="answer_box" class="input-field">
+      <input id="course-contents-ans{{$index}}" ng-model="ans" type="text"/>
+      <label for="course-contents-ans{{$index}}" style="left: 0 !important">เฉลยข้อที่ {{$index+1}}</label>
+    </div><br/><a href="" ng-click="addAnswer(content); answer_box = true" class="btn green waves-effect waves-light white-text">เพิ่มเฉลย</a>
+  </div>
+</div><a href="" title="เพ่ิมเนื้อหา" ng-click="addContent(section)" class="addContent blue btn right">
+  <div class="fa fa-plus"></div></a>
+<div ng-show="i_content &gt; 1" ng-click="removeContent(section)" style="margin-right: 10px" class="removeContentBtn btn red right">
+  <div class="fa fa-close"></div>
+</div>

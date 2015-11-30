@@ -1,0 +1,44 @@
+
+<h3 class="grey-text text-accent-2 center">ห้องเรียน {{classroom.title}}</h3>
+<center>
+  <div class="subject-filter-btn-container">
+    <div ng-init="showWall = true" ng-click="showWall = true; showCourse = false" ng-class="{'active': showWall}" class="btn-flat hoverable"><img src="images/icons/ActivityFeed.png"/><br/><span>แสดงกระดานประกาศ</span></div>
+    <div ng-init="showCourse = false" ng-click="showCourse = true; showWall = false" ng-class="{'active': showCourse}" class="btn-flat hoverable"><img src="images/icons/Classroom.png"/><br/><span>แสดงหลักสูตร</span></div>
+  </div>
+</center>
+<div ng-show="showWall" class="row">
+  <div ng-show="isTeacher" class="col s12 m8 offset-m2">
+    <div class="card animated fadeInDown">
+      <div class="card-content"><span class="card-title black-text">ข้อความประกาศ</span><br/>
+        <div class="input-field col s12"><small for="post-massage">เพิ่มข้อความหรือสิ่งที่น่าสนใจให้กับนักเรียนของคุณ</small>
+          <textarea ckeditor="editorOptions" ng-model="new_post" id="post-massage"></textarea>
+        </div>
+        <div class="row"></div>
+        <center>
+          <button ng-click="addPost(); new_post=''" ng-show="new_post != undefined" class="btn orange waves-effect waves-light">เพิ่มโพสต์</button>
+        </center>
+      </div>
+    </div>
+  </div>
+  <div ng-repeat="post in classroom.posts | orderBy: '-datetime'" class="col s12 m6">
+    <div class="card animated fadeInUp">
+      <div class="card-content"><a href="" ng-click="deletePost(post)" ng-show="isTeacher">
+          <div class="fa fa-times right red-text"></div></a>
+        <div ng-bind-html="post.content"></div><small>{{post.datetime | date:'medium'}}</small>
+      </div>
+    </div>
+  </div>
+</div>
+<classroom-course-list ng-show="showCourse"></classroom-course-list>
+<classroom-new-course></classroom-new-course>
+<div style="bottom: 55px; right: 55px;" ng-show="isTeacher" class="fixed-action-btn animated fadeInDown"><a data-position="top" data-delay="50" data-tooltip="เพิ่มหลักสูตร" ng-click="showCreateCourse()" class="btn-floating btn-large orange darken-2 waves-effect waves-light btn tooltipped"><i class="fa fa-lg fa-plus"></i></a></div>
+<div ng-repeat="course in classroom.course_detail" id="grading-modal-{{course.code}}" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5>{{course.title}} | ผลการสอบ<small class="right">จำนวนนักเรียน {{course.students.length}} คน</small></h5>
+    <h6 ng-show="course.scores.length == 0" class="black-text">ไม่มีผลสอบ</h6>
+    <ul class="collection">
+      <li ng-repeat="score in course.scores" class="collection-item"><span class="title">{{score.username}}</span><a href="#/grading/{{score.score_id}}" ng-show="isTeacher" class="right orange-text modal-action modal-close">ดูผลการสอบ</a><br/><b>ได้คะแนน</b> {{score.score}}<b> จาก</b> {{score.full_score}} <b>คะแนน</b><br/><b>คิดเป็น</b> {{score.score_percentage | number:2}}%</li>
+    </ul>
+  </div>
+  <div class="modal-footer"><a href="" class="modal-action modal-close waves-effect waves-red btn red">ปิด</a></div>
+</div>

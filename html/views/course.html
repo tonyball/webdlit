@@ -1,0 +1,32 @@
+
+<div class="row">
+  <course-sidenav></course-sidenav>
+  <course-content></course-content>
+</div>
+<div id="score-modal" class="modal">
+  <div class="modal-content center">
+    <h4 class="right"><i class="fa fa-times red-text modal-action modal-close waves-effect waves-dark"></i></h4>
+    <h4>คะแนนที่ได้</h4>
+    <h2 class="green-text">{{ current_score }} / {{tests[0].number_of_question[test_number-1]}} ข้อ ({{score_percentage | number:2}}%)</h2>
+  </div>
+  <div class="modal-footer"><a href="#/grading/{{score_id}}" class="btn orange waves-effect waves-light modal-action modal-close">รอสักครู่...</a></div>
+</div>
+<div id="open-test-answer-sheet" ng-click="openAnswerSheet($event)" style="display:none" class="open-answer-sheet-btn deep-orange-text">กระดาษคำตอบ</div>
+<div id="open-practice-answer-sheet" ng-click="openAnswerSheet($event)" style="display:none" class="open-answer-sheet-btn deep-orange-text">กระดาษคำตอบ</div>
+<div id="open-classroom-sidenav" ng-click="openClassroomSidenav($event)" class="open-classroom-sidenav-btn blue-text">แสดงบทเรียน</div>
+<course-clipboard></course-clipboard>
+<div id="special-input-panel" class="animated slideInUp z-depth-2">
+  <div class="card">
+    <div class="card-content"><span class="card-title black-text">คู่มือการใช้งาน | Syntax</span><a href="" ng-click="hidePanel()" class="fa fa-2x fa-times right red-text waves-effect waves-dark"></a>
+      <div class="divider"></div>
+      <div class="image-container"><img src="images/asciimath-1.png"/><img src="images/asciimath-2.png"/><img src="images/asciimath-3.png"/></div>
+    </div>
+  </div>
+</div>
+<script>
+  var isStop = false;
+  var adjustSpeed = function(speed){
+   var vid = document.getElementById('video-item');
+   vid.playbackRate = speed;
+  }
+</script>

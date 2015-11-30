@@ -1,0 +1,11 @@
+
+<div ng-init="i_topic = 1" class="row"><b>เนื้อหาในหลักสูตร</b><br/>
+  <div ng-repeat="topic in course_topics track by $index" class="input-field">
+    <input id="course-topics-{{$index}}" ng-model="course_topics[$index]" type="text"/>
+    <label for="course-topics-{{$index}}" style="left: 0 !important">หัวข้อที่ {{$index+1}}</label>
+  </div><a href="" title="เพิ่มหัวข้อ" ng-click="addTopic()" class="addTopicBtn btn orange left">
+    <div class="fa fa-plus-circle fa-2x"></div></a>
+  <div ng-show="i_topic &gt; 1" ng-click="removeTopic()" style="margin-left: 10px" class="removeTopicBtn btn red left">
+    <div class="fa fa-times-circle fa-2x"></div>
+  </div>
+</div>

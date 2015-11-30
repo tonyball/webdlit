@@ -1,0 +1,43 @@
+
+<ul id="user-dropdown" class="dropdown-content">
+  <li><a ng-href="#/profile/{{user.username}}" class="black-text">ข้อมูลส่วนตัว</a></li>
+  <li class="divider"></li>
+  <li><a href="#/settings" class="black-text">ตั้งค่า</a></li>
+  <li><a href="#/help" class="black-text">ความช่วยเหลือ</a></li>
+  <li class="divider"></li>
+  <li><a ng-click="signout()" class="black-text">ออกจากระบบ</a></li>
+</ul>
+<ul id="slide-out-user" class="side-nav">
+  <li><a ng-href="#/profile/{{user.username}}" class="black-text">ข้อมูลส่วนตัว</a></li>
+  <li class="divider"></li>
+  <li><a href="#/settings" class="black-text">ตั้งค่า</a></li>
+  <li><a href="#" class="black-text">ความช่วยเหลือ</a></li>
+  <li class="divider"></li>
+  <li><a ng-click="signout()" class="black-text">ออกจากระบบ</a></li>
+</ul>
+<ul id="notifications-dropdown" class="notifications dropdown-content">
+  <div class="notifications-header">
+    <header class="black-text">แจ้งเตือน</header>
+  </div>
+  <li class="divider"></li>
+  <li ng-if="notification_details.length == 0"><a class="notify-item black-text">ไม่มีการแจ้งเตือน</a></li>
+  <li ng-repeat="notification in notification_details | orderBy: '-datetime'" ng-mouseenter="setAsRead(notification)"><a href="{{notification.url}}" class="notify-item black-text">{{notification.content}}<em class="gray-text lighten-text-2">({{notification.datetime | date:'short'}})</em><span ng-show="notification.status == false" class="new badge orange"></span></a></li>
+</ul>
+<nav class="black">
+  <ul ng-show="isStudent || isTeacher" class="right"> 
+    <li class="notification-icon"><a href="#/notifications" data-activates="notifications-dropdown" class="noti-dropdown-button"><i ng-class="{'orange-text':allisread == false, 'animated swing infinite':allisread == false}" class="fa fa-bell fa-lg"></i></a></li>
+    <li class="hide-on-small-only"><img ng-src="images/avatars/{{user.avatar}}" alt="profile avatar" height="58" class="left hide-on-med-and-down user-avatar"/><a data-activates="user-dropdown" class="waves-effect waves-orange dropdown-button">{{user.firstname +" "+ user.lastname}}<i class="fa fa-caret-down fa-lg right arrow-dropdown"></i></a></li>
+    <li class="hide-on-med-and-up"><i data-activates="slide-out-user" style="margin-right: 1rem; margin-left: 1rem" class="waves-effect waves-orange slide-out-user-button fa fa-2x fa-ellipsis-v black-text"></i></li>
+  </ul>
+  <div class="top"></div>
+  <div class="bottom"></div>
+  <div ng-controller="SidebarCtrl" id="side-nav" class="side-nav">
+    <div ng-class="{ active: isActive('/dashboard')}" ng-click="hideSidenav()" class="grid-menu-item"><a href="#/dashboard" class="dashboard"><span>กระดานหลัก</span></a></div>
+    <div ng-class="{ active: isActive('/profile')}" ng-click="hideSidenav()" class="grid-menu-item"><a ng-href="#/profile/{{user.username}}" class="profile"><span>ข้อมูลส่วนตัว</span></a></div>
+    <div ng-class="{ active: isActive('/badges')}" ng-click="hideSidenav()" class="grid-menu-item"><a href="#/badges" class="badges"><span>เหรียญ</span></a></div>
+    <div ng-class="{ active: isActive('/grading')}" ng-click="hideSidenav()" ng-show="isStudent" class="grid-menu-item"><a href="#/grading" class="grading"><span>ผลการสอบ</span></a></div>
+    <div ng-show="isTeacher" ng-class="{ active: isActive('/classreport')}" ng-click="hideSidenav()" class="grid-menu-item"><a href="#/classreport" class="classreport"><span>ภาพรวมนักเรียน</span></a></div>
+    <div ng-show="isTeacher" ng-class="{ active: isActive('/studentactivity')}" ng-click="hideSidenav()" class="grid-menu-item"><a href="#/studentactivity" class="studentactivity"><span>งานนักเรียน</span></a></div>
+    <div ng-show="isTeacher" ng-class="{ active: isActive('/studentprogress')}" ng-click="hideSidenav()" class="grid-menu-item"><a href="#/studentprogress" class="studentprogress"><span>พัฒนาการนักเรียน</span></a></div>
+  </div><a href="" ng-click="showSidenav()" style="margin-left: 0.5em" ng-show="isStudent || isTeacher"><i style="font-size:1.75rem" class="fa fa-2x fa-th"></i></a>
+</nav>

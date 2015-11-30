@@ -1,0 +1,36 @@
+
+<h3 class="grey-text text-accent-2 center">ค้นหาห้องเรียน</h3>
+<div class="card col s12 m6 offset-m3">
+  <form>
+    <div class="input-field"><i class="fa fa-search prefix"></i>
+      <input id="search-input" type="text" ng-model="search_query" required="required" pattern="^[A-z0-9]{7}" maxlength="7" class="validate"/>
+      <label for="search-input" style="left: 0 !important" data-error="กรุณาใส่รหัสห้องเรียน 7 หลัก (A-Z,0-9)">ใส่รหัสห้องเรียนที่ต้องการ</label>
+    </div><a href="#/search?q={{search_query}}" class="right modal-action modal-close waves-effect waves-light btn orange">ค้นหา</a>
+    <div class="row"></div>
+  </form>
+</div>
+<div class="row"></div>
+<div ng-show="classcode != '' &amp;&amp; classcode != undefined">
+  <h5 style="margin-left: 25px">ผลการค้นหา : {{classcode}}</h5>
+  <div class="row">
+    <h6 ng-hide="classroom != undefined" style="margin-left:3rem" class="red-text">ไม่พบห้องเรียนที่ค้นหา</h6>
+  </div>
+</div>
+<div ng-show="classroom != undefined &amp;&amp; classcode != '' &amp;&amp; classcode != undefined" class="row">
+  <div class="col s12 m6 l4 classroom-card">
+    <div class="card animated bounceInDown">
+      <div class="card-image waves-effect waves-block waves-dark"><img src="images/classroom/{{classroom.image}}" class="activator responsive-img"/></div>
+      <div class="card-content"><span class="card-title activator black-text">{{classroom.title}} </span><br/><em>ครูผู้สอน:  </em><b>{{classroom.teacher_name}}</b><br/><em>วิชา:  </em><b>{{classroom.subject}} </b><br/><em>รหัสห้องเรียน: </em><b>{{classroom.code}}</b>
+        <div class="row"></div>
+        <center>
+          <h6 ng-show="current_user.classrooms.indexOf(classcode) != -1" class="green-text">เข้าสู่ห้องเรียนนี้เรียบร้อยแล้ว </h6>
+          <buttn ng-click="show_verify_box = true" ng-hide="show_verify_box == true || current_user.classrooms.indexOf(classcode) != -1" class="btn green">แสดงที่ใส่รหัสยืนยันการเข้าห้องเรียน</buttn>
+          <div class="input-field">
+            <input type="text" id="verification-code" placeholder="กรุณาใส่รหัสการเข้าห้องเรียน" ng-model="verification_code" ng-show="show_verify_box" maxlength="12"/>
+          </div>
+          <div class="row"></div><a ng-click="verifyingCode()" ng-show="show_verify_box" class="waves-effect waves-orange btn orange darken-1"><i class="fa fa-graduation-cap left"></i> ขอเข้าเรียน</a>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

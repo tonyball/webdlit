@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "manageclass.js",
+  "sourceRoot": "",
+  "sources": [
+    "manageclass.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CACiC,GADjC,CAAO,EAC2B,CADlC,KAAA,EAAA;CAEW,CAEL,CAFqB,GAAjB,CAAiB,IAAvB,EAAA,MAAuB;CAF3B,EACiC;CAHjC"
+}

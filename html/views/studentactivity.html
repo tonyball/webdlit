@@ -1,0 +1,48 @@
+
+<h3 class="grey-text text-accent-2 center">งานนักเรียน</h3>
+<div class="row"></div>
+<div class="col s12 m4">
+  <label>ห้องเรียน</label>
+  <select class="browser-default">
+    <option ng-repeat="class in classes" value="{{$index}}" ng-model="current_class_index">{{class.title}}</option>
+  </select>
+</div>
+<div class="col s12 m4">
+  <label>หลักสูตร</label>
+  <select class="browser-default course-selector">
+    <option ng-repeat="course in classes[current_class_index].course_details" value="{{course.code}}" ng-model="current_course_code" ng-change="showContent(current_course_code)">{{course.title}}</option>
+  </select>
+</div>
+<div class="row"></div>
+<center>
+  <div class="subject-filter-btn-container">
+    <div data-value="content" class="btn-flat hoverable active"><img src="images/icons/Details.png"/><br/><span>ทั้งหมด</span></div>
+    <div data-value="type-video" class="btn-flat hoverable"><img src="images/icons/FilmReel.png"/><br/><span>วีดีโอ</span></div>
+    <div data-value="type-practice" class="btn-flat hoverable"><img src="images/icons/Reading.png"/><br/><span>แบบฝึกหัด</span></div>
+    <div data-value="type-test" class="btn-flat hoverable"><img src="images/icons/Sheet.png"/><br/><span>แบบทดสอบ</span></div>
+  </div>
+</center>
+<div class="row">
+  <div class="col s12">
+    <div ng-repeat="course in classes[current_class_index].course_details" class="card animated bounceInDown">
+      <div class="card-content"><span class="card-title black-text">{{course.title}}	</span>
+        <ul data-collapsible="accordion" ng-repeat="section in course.sections" class="collapsible">
+          <h5 class="center">{{section.name}}</h5>
+          <li ng-repeat="content in section.contents" ng-mouseenter="showContent()" class="content type-{{content.type}}">
+            <div class="collapsible-header"><i class="fa fa-lg {{content.logo}}"></i>{{content.title}}<i class="fa fa-caret-down right"></i></div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="std-activity col s4 m4 l4 animated fadeIn grey lighten-2"><b class="black-text">ยังไมไ่ด้เริ่ม</b><a ng-href="#/profile/{{name}}" ng-repeat="name in content.not_start" class="std-name">
+                    <div>{{name}}</div></a></div>
+                <div class="std-activity col s4 m4 l4 animated fadeIn green lighten-2"><b class="black-text">กำลังทำ</b><a ng-href="#/profile/{{name}}" ng-repeat="name in content.start" class="std-name">
+                    <div>{{name}}</div></a></div>
+                <div class="std-activity col s4 m4 l4 animated fadeIn green darken-2"><b class="white-text">เสร็จสิ้น	</b><a ng-href="#/profile/{{name}}" ng-repeat="name in content.complete" class="std-name">
+                    <div>{{name}}</div></a></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

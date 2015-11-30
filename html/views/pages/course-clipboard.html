@@ -1,0 +1,21 @@
+
+<div style="bottom: 55px; right: 55px;" ng-show="isStudent" class="fixed-action-btn animated fadeInDown"><a data-position="left" data-delay="50" data-tooltip="กระดาษทด" class="btn-floating btn-large orange darken-2 waves-effect waves-light btn tooltipped"><i class="fa fa-clipboard right"></i></a>
+  <ul>
+    <li><a href="" ng-click="showClipboard()" data-position="left" data-delay="50" data-tooltip="กระดาษทดแบบเขียน" class="btn-floating green tooltipped waves-effect waves-light">
+        <div class="fa fa-pencil fa-lg"></div></a></li>
+    <li><a href="#text-clipboard-modal" data-position="left" data-delay="50" data-tooltip="กระดาษทดแบบพิมพ์" class="btn-floating blue modal-trigger tooltipped waves-effect waves-light">
+        <div class="fa fa-keyboard-o fa-lg"></div></a></li>
+  </ul>
+</div>
+<div id="text-clipboard-modal" class="modal bottom-sheet">
+  <div class="modal-content"><i ng-click="closeTextClipboard()" class="fa fa-times fa-lg right red-text modal-action modal-close waves-effect waves-dark"></i>
+    <textarea autofocus="autofocus" class="materialize-textarea"></textarea>
+  </div>
+</div>
+<div id="draw-clipboard-modal" style="bottom:0px;position:fixed;z-index:9999;margin-bottom:-20px;padding-top:10px;display:none;max-height:50%;max-width: 100%;background: white; overflow-x: hidden; overflow-y:auto" class="center animated slideInUp">
+  <div class="modal-content"><a href="#SketchPad" ng-click="clear()" data-tool="eraser" style="margin-right:10px" class="btn-flat">ล้าง</a><a href="#SketchPad" data-download="png" style="margin-right:10px" download="download" class="btn-flat">บันทึก</a><a href="" ng-click="hideClipboard()" style="margin-right:20px" class="fa fa-times fa-lg right red-text"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#000000" style="padding: 1rem" class="btn black waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#9e9e9e" style="padding: 1rem" class="btn grey waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#f44336" style="padding: 1rem" class="btn red waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#e91e63" style="padding: 1rem" class="btn pink waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#9c27b0" style="padding: 1rem" class="btn purple waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#2196f3" style="padding: 1rem" class="btn blue waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#009688" style="padding: 1rem" class="btn teal waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#4caf50" style="padding: 1rem" class="btn green waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#ffeb3b" style="padding: 1rem" class="btn yellow waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#ff9800" style="padding: 1rem" class="btn orange waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="5" data-color="#795548" style="padding: 1rem" class="btn brown waves-effect waves-light hide-on-small-only"></a><a href="#SketchPad" data-tool="marker" data-size="50" data-color="#ffffff" title="ยางลบ" class="btn white waves-effect waves-light">
+      <div class="fa fa-eraser fa-lg black-text"></div></a></div>
+  <div class="modal-footer">
+    <canvas id="SketchPad" width="{{frameWidth}}" height="600" style="background:white"></canvas>
+  </div>
+</div>

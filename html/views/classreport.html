@@ -1,0 +1,83 @@
+
+<h3 class="grey-text text-accent-2 center">ภาพรวมนักเรียน</h3>
+<div class="row"></div>
+<div class="col s12 m4">
+  <label>ห้องเรียน</label>
+  <select class="browser-default">
+    <option ng-repeat="class in classes" value="{{$index}}" ng-model="current_class_index">{{class.title}}</option>
+  </select>
+</div>
+<div class="col s12 m4">
+  <label>หลักสูตร</label>
+  <select class="browser-default classroom-select">
+    <option ng-repeat="course in classes[current_class_index].course_details" value="{{course.code}}" ng-model="current_course_code" ng-change="showContent(current_course_code)">{{course.title}}</option>
+  </select>
+</div>
+<div class="col s12 m4">
+  <label>ประเภทรายงาน</label>
+  <select class="browser-default report-type">
+    <option value="chart-report" selected="selected">แผนภูมิ</option>
+    <option value="cards-report">เหรียญ </option>
+  </select>
+</div>
+<div class="row chart-report report">
+  <div class="col s12">
+    <div ng-repeat="course in classes[current_class_index].course_details" id="{{course.code}}" class="card animated fadeInDown">
+      <div class="card-content"><span class="card-title black-text">{{course.title}}</span><b class="right">จำนวนนักเรียน {{course.students.length}}  คน</b>
+        <highchart id="chart1" config="course.chart" style="min-width: 310px; height: 400px; margin: 0 auto"></highchart>
+      </div>
+      <div class="card-action">
+        <table class="bordered hoverable centered responsive-table">
+          <thead>
+            <tr class="orange darken-2 white-text">
+              <th data-field="std_time_max">เวลาเรียนมากสุด (นาที)</th>
+              <th data-field="std_time_min">เวลาเรียนน้อยสุด (นาที)</th>
+              <th data-field="std_time_avg">เวลาเฉลี่ยรวม (นาที)</th>
+              <th data-field="std_score_max">คะแนนมากสุด (นาที)</th>
+              <th data-field="std_score_min">คะแนนน้อยสุด (นาที)</th>
+              <th data-field="std_score_avg">คะแนนเฉลี่ยรวม (นาที)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>48 นาที</td>
+              <td>33 นาที</td>
+              <td>27 นาที</td>
+              <td>99 คะแนน</td>
+              <td>58 คะแนน</td>
+              <td>80 คะแนน</td>
+            </tr>
+          </tbody>
+        </table><b class="right">รหัสห้องเรียน : {{course.code}}</b>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row cards-report report">
+  <div class="col s12">
+    <div ng-repeat="course in classes[current_class_index].course_details" id="{{course.code}}" class="card animated fadeInDown">
+      <div class="card-content"><span class="card-title black-text">{{course.title}} </span><b class="right">จำนวนนักเรียน {{course.students.length}} คน</b>
+        <table class="bordered">
+          <thead>
+            <tr class="orange darken-2 white-text">
+              <th>นักเรียน</th>
+              <th>เหรียญที่ได้</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="std in course.std_details">
+              <td width="25%"><a ng-href="#/profile/{{std.username}}" class="orange-text">{{std.firstname+" "+std.lastname}}</a></td>
+              <td>
+                <p ng-show="std.badge_details.length == 0"><em>ไม่มีเหรียญสะสม</em></p>
+                <div class="show-summary-cards">
+                  <div ng-repeat="badge in std.badge_details" class="card-box"><b>{{badge.name}}</b><br/><img ng-src="images/badges/{{badge.group}}/{{badge.image}}" data-position="top" data-delay="50" data-tooltip="{{badge.description}}" ng-mouseenter="showTooltip()" class="user-badges tooltipped"/></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-action"><b class="right">รหัสห้องเรียน : {{course.code}}</b></div>
+    </div>
+  </div>
+</div>

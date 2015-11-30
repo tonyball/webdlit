@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "dashboard-search-modal.js",
+  "sourceRoot": "",
+  "sources": [
+    "dashboard-search-modal.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CACqC,GADrC,CAAO,EAAP,MAAA,OAAA;WAEI;CAAA,CAAa,IAAb,KAAA,8BAAA;CAAA,CACU,CADV,GACA,EAAA;CAFiC;CADrC,EACqC;CAHrC"
+}

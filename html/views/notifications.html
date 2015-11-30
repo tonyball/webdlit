@@ -1,0 +1,11 @@
+
+<h3 class="grey-text text-accent-2 center">รายการแจ้งเตือน</h3>
+<div class="col s12 m10 offset-m1">
+  <div class="card animated fadeInDown">
+    <div class="card-content"><b ng-if="notification_details.length == 0">ไม่มีการแจ้งเตือน</b>
+      <ul ng-repeat="notification in notification_details | orderBy: '-datetime'">
+        <li class="notify-item-list"><a href="{{notification.url}}" class="black-text">{{notification.content}}<span ng-show="notification.status == false" class="new badge orange"></span></a><br/><small class="grey-text">{{notification.datetime | date:'medium'}}</small></li>
+      </ul>
+    </div>
+  </div>
+</div>

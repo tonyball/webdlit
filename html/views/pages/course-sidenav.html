@@ -1,0 +1,17 @@
+
+<div style="display:none" class="col s12 m3 l3 classroom-sidenav-container">
+  <div class="card animated slideInLeft"><a href="" ng-click="hideNav()" class="fa fa-close fa-2x right red-text"></a><br/>
+    <div class="card-image"><img ng-src="images/course/{{classroom.image}}"/></div>
+    <div class="card-content"><span class="card-title black-text">{{classroom.title}} | {{classroom.code}}</span>
+      <ul data-collapsible="accordion" class="collapsible z-depth-0 classrooom-sidenav">
+        <li ng-repeat="section in classroom.sections">
+          <div ng-class="{'active': section.name == current_section}" ng-mouseenter="showContents()" class="collapsible-header"><i class="fa fa-chevron-down fa-sm left"></i> {{section.name}}</div>
+          <div ng-class="{'show-body': section.name == current_section}" class="collapsible-body">
+            <ul style="max-height: 400px; overflow: auto" class="collection"><a ng-repeat="content in section.contents" id="link{{content.id}}" ng-class="{'active': content.id == current_content}" data-hw="data-hw" data-title="{{content.title}}" data-question-id="question-{{content.id}}" data-href="{{classroom.code}}/{{section.name}}/{{content.content_url}}" data-type="{{content.type}}" ng-click="showContent($event,content.id); stopTime()" class="content-link black-text collection-item waves-effect waves-orange"><i class="fa fa-lg left {{content.logo}}"></i>{{content.title}}
+                <div class="secondary-content"><i ng-show="content.id == current_content" class="fa fa-play green-text"></i></div></a></ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

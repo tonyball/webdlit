@@ -1,0 +1,14 @@
+
+<div id="search-modal" class="modal">
+  <div class="modal-content">
+    <h5>ค้นหาห้องเรียน<i class="right fa fa-times red-text modal-action modal-close"></i></h5>
+    <div class="row">
+      <form name="searchForm">
+        <div class="input-field"><i class="fa fa-search prefix"></i>
+          <input id="search-input" type="text" ng-model="search_query" required="required" pattern="^[A-z0-9]{7}" maxlength="7" class="validate"/>
+          <label for="search-input" style="left: 0 !important" data-error="กรุณาใส่รหัสห้องเรียน 7 หลัก (A-Z,0-9)">ใส่รหัสห้องเรียนที่ต้องการ</label>
+        </div><a type="submit" href="#/search?q={{search_query}}" ng-disabled="!searchForm.$valid" class="right waves-effect waves-light btn orange modal-action modal-close">ค้นหา</a>
+      </form>
+    </div>
+  </div>
+</div>
